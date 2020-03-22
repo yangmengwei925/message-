@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        .content{
+            width:100%;
+            height: 100%;
+            background: #ccc;
+            position: relative;
+        }
+        header{
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+        }
+        footer{
+            width: 100%;
+            height: 80px;
+            display: flex;
+            justify-content: space-around;
+            position: absolute;
+            bottom:50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <header>
+             <div class="title">用户留言</div>
+        </header>
+       
+        <div class="message_box" id="messageBox"></div>
+        <footer>
+           <div><input id="myInput" type="text" placeholder="请输入留言类容"><button id="doPost">提交</button></div>  
+        </footer>
+       
+    </div>
+</body>
+<script>
+    // 通过获取input的输入焦点事件抓取内容，传递给留言板的div来展示。
+    window.onload = function(){
+		
+		var oMessageBox = document.getElementById("messageBox");
+		var oInput = document.getElementById("myInput");
+		var oPostBtn = document.getElementById("doPost");
+		
+		oPostBtn.onclick = function(){
+			if(oInput.value){
+				//写入发表留言的时间
+				var oTime = document.createElement("div");
+				oTime.className = "time";
+				var myDate = new  Date();
+				oTime.innerHTML = myDate.toLocaleString();
+				oMessageBox.appendChild(oTime);
+				
+				//写入留言内容
+				var oMessageContent = document.createElement("div");
+				oMessageContent.className = "message_content";
+				oMessageContent.innerHTML = oInput.value;
+				oInput.value = "";
+				oMessageBox.appendChild(oMessageContent);
+			}
+			
+		}
+		
+	}
+</script>
+</html>
